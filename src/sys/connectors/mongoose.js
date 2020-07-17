@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { DB_HOST, DB_PORT, DB_NAME } = process.env;
 let count = 0;
 
 const options = {
@@ -13,7 +14,7 @@ const options = {
 const connectWithRetry = () => {
   console.log("MongoDB connection with retry");
   mongoose
-    .connect("mongodb://localhost:27017/exampleapp", options)
+    .connect(`mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`, options)
     .then(() => {
       console.log("MongoDB is connected");
     })
